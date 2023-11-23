@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+     <item
+         android:id="@+id/settings"
+         android:title="@string/settings"
+         android:orderInCategory="4"
+         android:icon="@drawable/ic_settings"
+         app:showAsAction="ifRoom"
+         />
+    <item
+        android:id="@+id/reminder"
+        android:title="@string/reminder"
+        android:orderInCategory="3"
+        android:icon="@drawable/ic_reminder"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/notes"
+        android:title="@string/notes"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_baseline_note_24"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/shop_list"
+        android:title="@string/shop_list"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_checklist"
+        app:showAsAction="ifRoom"
+        />
+
+
+</menu>

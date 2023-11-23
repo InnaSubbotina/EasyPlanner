@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">EasyPlanner</string>
+    <string name="settings">Настройки</string>
+    <string name="notes">Заметки</string>
+    <string name="shop_list">Списки</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="description">Введите текст заметки</string>
+    <string name="new_list">Название нового списка</string>
+    <string name="update_new_list">Измените название списка</string>
+    <string name="list_name">Название списка</string>
+    <string name="create_list_button">Создать список</string>
+    <string name="delete_item_shoplist">Вы хотите удалить этот список?</string>
+    <string name="delete_alert">Удалить</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="update_button">Обновить</string>
+    <string name="delete_list">Удалить список</string>
+    <string name="clear_list">Очистить список</string>
+    <string name="share_list">Поделиться списком</string>
+    <string name="add_new_item">Введите текст</string>
+    <string name="empty_list">Пустой список</string>
+    <string name="update_list_item">Обновить список элементов</string>
+    <string name="name">Название</string>
+    <string name="item_info">Описание</string>
+    <string name="update_item">Обновить</string>
+    <string name="name_note">Название заметки</string>
+    <string name="share_by">Поделиться с помощью</string>
+
+    <string name="general">Общие настройки</string>
+    <string name="choose_note_style">Стиль заметок</string>
+    <string name="choose_time_formate">Формат времени</string>
+    <string name="settings_theme">Настроить тему</string>
+    <string name="choose_theme">Выбрать тему </string>
+    <string name="note_text_settings">Настройки текста заметки</string>
+    <string name="choose_text_size">Выбрать тему </string>
+    <string name="title_text_size">Размер текста заголовка заметки</string>
+    <string name="content_text_size">Размер текста описания заметки</string>
+
+    <string name="remove_ads">Remove ads</string>
+    <string name="remove_ads_summary">Remove all ads from this app</string>
+    <string name="reminder">Напоминания</string>
+    <string name="set_time_reminder">Выберите время напоминания</string>
+
+    <string name="channel_name">Мои напоминания</string>
+    <string name="channel_description">Channel For Alarm Manager</string>
+    <string name="snooze">Звонит напоминание</string>
+    <string name="delete_this_alarm">Удалить напоминание</string>
+    <string name="you_want_delete_this_alarm">Вы хотите удалить это напоминание?</string>
+    <string name="delete_this_item">Вы хотите удалить этот элемент?</string>
+    <string name="reminder_was_delete">Напоминание удалено</string>
+    <string name="reminder_was_cancel">Напоминание отменено</string>
+    <string name="reminder_turn_off">Напоминание установлено</string>
+    <string name="note_was_delete">Заметка удалена</string>
+    <string name="set_date_and_time">Выберите дату и время</string>
+    <string name="choose_time">Выберите время</string>
+
+
+</resources>

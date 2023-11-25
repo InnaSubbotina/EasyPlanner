@@ -20,6 +20,9 @@ data class AlarmItem(
     val time: String,
 
     @ColumnInfo(name = "timeInMillis")
-    val timeInMillis: Long
+    val timeInMillis: Long,
+
+    @ColumnInfo(name = "alarmOnOff")
+    var alarmOnOff: Boolean?
 
 ) : Serializable

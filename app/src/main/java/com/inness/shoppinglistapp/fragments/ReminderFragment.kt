@@ -63,8 +63,8 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observer()
         initRcView()
+        observer()
         onClickNew()
     }
 
@@ -96,7 +96,10 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
         }
     }
 
-    override fun onClickAlarmSwitch(alarm: AlarmItem) {
+    override fun onClickAlarmSwitchOn(alarm: AlarmItem) {
+        alarm.alarmOnOff = true
+        mainViewModel.updateAlarmItem(alarm)
+        observer()
         val title = alarm.title
         val desc = alarm.content
         val myNotification = "$title\n$desc"
@@ -111,11 +114,16 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
             pendingIntent
         )
         Toast.makeText(activity,getString(R.string.reminder_turn_off),Toast.LENGTH_LONG).show()
+
     }
 
     override fun onClickAlarmSwitchOff(alarm: AlarmItem) {
+        alarm.alarmOnOff = false
+        mainViewModel.updateAlarmItem(alarm)
+        observer()
         alarmManager.cancel(pendingIntent)
         Toast.makeText(activity, getString(R.string.reminder_was_cancel), Toast.LENGTH_SHORT).show()
+
     }
 
     override fun deleteAlarmItem(id: Int) {

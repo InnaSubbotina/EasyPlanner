@@ -19,7 +19,7 @@ class AlarmAdapter(private val listener: Listener) : ListAdapter <AlarmItem, Ala
     }
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
        holder.setData(getItem(position),listener)
-    }
+       }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view){
         private val binding = ReminderListItemBinding.bind(view)
@@ -40,10 +40,18 @@ class AlarmAdapter(private val listener: Listener) : ListAdapter <AlarmItem, Ala
                 alarm.id?.let { it1 -> listener.deleteAlarmItem(it1) }
             }*/
             switchSetAlarm.setOnCheckedChangeListener { _, isChecked ->
-                if(isChecked) listener.onClickAlarmSwitch(alarm)
-                else listener.onClickAlarmSwitchOff(alarm)
+                if(isChecked) {
+                    alarm.alarmOnOff = true
+                    listener.onClickAlarmSwitchOn(alarm)
+                } else {
+                    alarm.alarmOnOff = false
+                    listener.onClickAlarmSwitchOff(alarm)
+                }
             }
+
         }
+
+
 
         companion object {
             fun create(parent: ViewGroup) : ItemHolder {
@@ -66,7 +74,7 @@ class AlarmAdapter(private val listener: Listener) : ListAdapter <AlarmItem, Ala
     interface Listener {
         fun deleteAlarmItem(id:Int)
         fun onClickAlarmItem(alarm:AlarmItem)
-        fun onClickAlarmSwitch(alarm: AlarmItem)
+        fun onClickAlarmSwitchOn(alarm: AlarmItem)
         fun onClickAlarmSwitchOff(alarm: AlarmItem)
     }
 }

@@ -1,15 +1,12 @@
 package com.inness.shoppinglistapp.activities
 
-import android.app.DatePickerDialog
+
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import androidx.annotation.RequiresApi
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.inness.shoppinglistapp.R
@@ -26,6 +23,8 @@ class AlarmActivity : AppCompatActivity() {
     private var calendar = Calendar.getInstance()
     private lateinit var binding: ActivityAlarmBinding
     private var alarm: AlarmItem? = null
+    //private lateinit var alarmManager: AlarmManager
+    //private lateinit var pendingIntent: PendingIntent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +36,15 @@ class AlarmActivity : AppCompatActivity() {
             showTimePicker()
         }
     }
+
+    /*private fun saveSwitchState(){
+        val sharedPref = getSharedPreferences("sharedPref",Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.apply(){
+            putBoolean("BOOLEAN_KEY", false)
+            .apply()
+        }
+    }*/
 
     private fun showTimePicker() {
         picker = MaterialTimePicker.Builder()
@@ -55,6 +63,23 @@ class AlarmActivity : AppCompatActivity() {
             calendar.set(Calendar.MINUTE,picker.minute)
         }
     }
+
+    /*fun setAlarm() {
+        val title = binding.edTitleAlarm.text
+        val desc = binding.edDescriptionAlarm.text
+        val myNotification = "$title\n$desc"
+        alarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        pendingIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+            intent.putExtra("myNotification",myNotification)
+            PendingIntent.getBroadcast(this,alarm?.id!!,intent, PendingIntent.FLAG_IMMUTABLE)
+        }
+        alarmManager.setExact(
+            AlarmManager.RTC_WAKEUP,
+            alarm!!.timeInMillis,
+            pendingIntent
+        )
+        Toast.makeText(this,getString(R.string.reminder_turn_off), Toast.LENGTH_LONG).show()
+    }*/
 
     private fun getTimeFromPicker(): String {
         val h = picker.hour
@@ -84,7 +109,8 @@ class AlarmActivity : AppCompatActivity() {
             binding.edTitleAlarm.text.toString(),
             binding.edDescriptionAlarm.text.toString(),
             getTimeFromPicker(),
-            calendar.timeInMillis
+            calendar.timeInMillis,
+            null
         )
     }
 
@@ -132,4 +158,11 @@ class AlarmActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
+    companion object{
+        const val SWITCH_KEY = "switch_on_off"
+
+    }
+
+
 }

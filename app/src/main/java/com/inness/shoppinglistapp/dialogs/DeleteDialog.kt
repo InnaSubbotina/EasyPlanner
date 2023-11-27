@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import com.inness.shoppinglistapp.databinding.DeleteDialogBinding
-import com.inness.shoppinglistapp.databinding.NewListDialogBinding
 
 object DeleteDialog {
     fun showDialog(context: Context, listener : Listener) {
@@ -25,7 +24,6 @@ object DeleteDialog {
         dialog.window?.setBackgroundDrawable(null)
         dialog.show()
     }
-
 
     interface Listener {
         fun onClick()

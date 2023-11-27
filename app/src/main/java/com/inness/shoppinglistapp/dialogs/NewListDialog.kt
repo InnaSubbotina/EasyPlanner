@@ -18,9 +18,9 @@ object NewListDialog {
                 bCreate.text = context.getString(R.string.update_button)
                 tvTitleDialod.text = context.getString(R.string.update_new_list)
             }
-            bCreate.setOnClickListener{
+            bCreate.setOnClickListener {
                 val listName = edNewListName.text.toString()
-                if(listName.isNotEmpty()){
+                if(listName.isNotEmpty()) {
                     listener.onClick(listName)
                 }
                 dialog?.dismiss()
@@ -30,7 +30,6 @@ object NewListDialog {
         dialog.window?.setBackgroundDrawable(null)
         dialog.show()
     }
-
 
     interface Listener {
         fun onClick(name: String)

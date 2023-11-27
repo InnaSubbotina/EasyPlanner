@@ -15,9 +15,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.inness.shoppinglistapp.R
 import com.inness.shoppinglistapp.activities.AlarmActivity
 import com.inness.shoppinglistapp.activities.MainApp
@@ -26,7 +24,6 @@ import com.inness.shoppinglistapp.databinding.FragmentReminderBinding
 import com.inness.shoppinglistapp.dialogs.DeleteDialog
 import com.inness.shoppinglistapp.entities.AlarmItem
 import com.inness.shoppinglistapp.utils.AlarmReceiver
-import com.inness.shoppinglistapp.utils.SwipeToDelete
 import com.inness.shoppinglistapp.viewmodel.MainViewModel
 
 class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
@@ -36,7 +33,6 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
     private lateinit var adapter: AlarmAdapter
     private lateinit var alarmManager: AlarmManager
     private lateinit var pendingIntent: PendingIntent
-
 
     private val mainViewModel: MainViewModel by activityViewModels {
         MainViewModel.MainViewModelFactory((context?.applicationContext as MainApp).database)
@@ -98,8 +94,6 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
 
     override fun onClickAlarmSwitchOn(alarm: AlarmItem) {
         alarm.alarmOnOff = true
-        mainViewModel.updateAlarmItem(alarm)
-        observer()
         val title = alarm.title
         val desc = alarm.content
         val myNotification = "$title\n$desc"
@@ -114,16 +108,12 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
             pendingIntent
         )
         Toast.makeText(activity,getString(R.string.reminder_turn_off),Toast.LENGTH_LONG).show()
-
     }
 
     override fun onClickAlarmSwitchOff(alarm: AlarmItem) {
         alarm.alarmOnOff = false
-        mainViewModel.updateAlarmItem(alarm)
-        observer()
         alarmManager.cancel(pendingIntent)
         Toast.makeText(activity, getString(R.string.reminder_was_cancel), Toast.LENGTH_SHORT).show()
-
     }
 
     override fun deleteAlarmItem(id: Int) {
@@ -142,7 +132,7 @@ class ReminderFragment : BaseFragment(), AlarmAdapter.Listener {
         editLauncher.launch(intent)
     }
 
-    companion object{
+    companion object {
         const val NEW_ALARM_KEY = "title_key"
         const val EDIT_STATE_KEY = "edit_state_key"
         @JvmStatic

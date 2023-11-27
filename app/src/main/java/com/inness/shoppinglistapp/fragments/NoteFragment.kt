@@ -25,7 +25,6 @@ import com.inness.shoppinglistapp.dialogs.DeleteDialog
 import com.inness.shoppinglistapp.entities.NoteItem
 import com.inness.shoppinglistapp.viewmodel.MainViewModel
 
-
 class NoteFragment : BaseFragment(), NoteAdapter.Listener {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var editLauncher: ActivityResultLauncher<Intent>
@@ -62,7 +61,7 @@ class NoteFragment : BaseFragment(), NoteAdapter.Listener {
         onClickNew()
     }
 
-    private fun initRcView() = with(binding){
+    private fun initRcView() = with(binding) {
         defPref=PreferenceManager.getDefaultSharedPreferences(activity)
         rcNewNote.layoutManager = getLayoutManger()
         adapter = NoteAdapter(this@NoteFragment,defPref)
@@ -77,14 +76,14 @@ class NoteFragment : BaseFragment(), NoteAdapter.Listener {
         }
     }
 
-    private fun observer(){
+    private fun observer() {
         mainViewModel.allNotes.observe(
             viewLifecycleOwner, {
                 adapter.submitList(it)
          })
     }
 
-    private fun onEditResult(){
+    private fun onEditResult() {
         editLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode == Activity.RESULT_OK){

@@ -5,12 +5,11 @@ import android.app.NotificationManager
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import com.inness.shoppinglistapp.R
-import com.inness.shoppinglistapp.activities.MainActivity.Companion.CHANNEL_ID
 import com.inness.shoppinglistapp.databinding.ActivityMainBinding
 import com.inness.shoppinglistapp.dialogs.NewListDialog
 import com.inness.shoppinglistapp.fragments.FragmentManager
@@ -18,15 +17,12 @@ import com.inness.shoppinglistapp.fragments.NoteFragment
 import com.inness.shoppinglistapp.fragments.ReminderFragment
 import com.inness.shoppinglistapp.fragments.ShopListNamesFragment
 import com.inness.shoppinglistapp.settings.SettingsActivity
-import com.inness.shoppinglistapp.utils.AlarmReceiver
-import com.inness.shoppinglistapp.utils.AlarmReceiver.Companion.CHANNEL_ID
 
 class MainActivity : AppCompatActivity(), NewListDialog.Listener {
     lateinit var binding: ActivityMainBinding
     private var currentMenuItemId = R.id.shop_list
     private var currentTheme = ""
     private lateinit var defPref: SharedPreferences
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         defPref = PreferenceManager.getDefaultSharedPreferences(this)
@@ -38,12 +34,11 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
         currentTheme = defPref.getString("theme_key","bright_blue").toString()
         FragmentManager.setFragment(ShopListNamesFragment.newInstance(),this)
         setBottomNavListener()
-
     }
 
-       private fun setBottomNavListener(){
+    private fun setBottomNavListener(){
         binding.bottomNav.setOnItemSelectedListener {
-            when(it.itemId){
+        when(it.itemId){
                 R.id.settings->{
                     startActivity(Intent(this,SettingsActivity::class.java))
                 }
@@ -68,7 +63,6 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
         super.onResume()
         binding.bottomNav.selectedItemId = currentMenuItemId
         if(defPref.getString("theme_key","bright_blue") != currentTheme) recreate()
-
     }
 
     private fun getSelectedTheme() : Int {
@@ -86,19 +80,16 @@ class MainActivity : AppCompatActivity(), NewListDialog.Listener {
             val importance = NotificationManager.IMPORTANCE_HIGH
             val mChannel = NotificationChannel(CHANNEL_ID, name, importance)
             mChannel.description = descriptionText
-
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(mChannel)
         }
     }
 
-
-    companion object{
+    companion object {
         const val CHANNEL_ID = "foxandroid"
     }
 
     override fun onClick(name: String) {
        Log.d("MyLog", "Name: $name")
     }
-
 }

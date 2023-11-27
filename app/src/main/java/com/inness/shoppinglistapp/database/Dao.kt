@@ -62,8 +62,6 @@ interface Dao {
     @Update
     suspend fun updateShopListName(shopListName: ShopListNameItem)
 
-
-
     @Query("SELECT * FROM alarm_item")
     fun getAllAlarmItem(): Flow<List<AlarmItem>>
 
@@ -75,6 +73,4 @@ interface Dao {
 
     @Update
     suspend fun updateAlarmItem(alarm: AlarmItem)
-
-
 }

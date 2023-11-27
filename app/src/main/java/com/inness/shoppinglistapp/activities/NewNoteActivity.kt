@@ -1,13 +1,8 @@
 package com.inness.shoppinglistapp.activities
 
-import android.animation.Animator.AnimatorListener
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
-import android.icu.text.SimpleDateFormat
-import android.icu.util.Calendar
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
@@ -16,9 +11,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
-import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.inness.shoppinglistapp.R
@@ -28,7 +23,6 @@ import com.inness.shoppinglistapp.fragments.NoteFragment
 import com.inness.shoppinglistapp.utils.HtmlManager
 import com.inness.shoppinglistapp.utils.MyTouchListener
 import com.inness.shoppinglistapp.utils.TimeManager
-import java.util.*
 
 class NewNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewNoteBinding
@@ -134,11 +128,9 @@ class NewNoteActivity : AppCompatActivity() {
     private fun setColorForSelectedText(colorId: Int) = with(binding) {
         val startPosition = edDescription.selectionStart
         val endPosition = edDescription.selectionEnd
-
         val styles =
             edDescription.text.getSpans(startPosition, endPosition, ForegroundColorSpan::class.java)
         if (styles.isNotEmpty()) edDescription.text.removeSpan(styles[0])
-
         edDescription.text.setSpan(
             ForegroundColorSpan(
                 ContextCompat.getColor(this@NewNoteActivity, colorId)
@@ -213,7 +205,6 @@ class NewNoteActivity : AppCompatActivity() {
     private fun setTextSize() = with(binding) {
         edTitle.setTextSize(pref?.getString("title_size_key", "16"))
         edDescription.setTextSize(pref?.getString("content_size_key", "14"))
-
     }
 
     private fun EditText.setTextSize(size: String?) {
@@ -226,6 +217,5 @@ class NewNoteActivity : AppCompatActivity() {
         } else {
             R.style.Theme_NewNoteActivityBlue
         }
-
     }
 }

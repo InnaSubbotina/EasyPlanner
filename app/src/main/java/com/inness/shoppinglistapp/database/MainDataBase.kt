@@ -6,11 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.inness.shoppinglistapp.entities.*
 
-@Database(entities = [LibraryItem::class, NoteItem::class,ShopListItem::class,ShopListNameItem::class,AlarmItem::class], version = 1, exportSchema = false)
+@Database(entities = [
+    LibraryItem::class,
+    NoteItem::class,
+    ShopListItem::class,
+    ShopListNameItem::class,
+    AlarmItem::class],
+    version = 1, exportSchema = false)
+
 abstract class MainDataBase : RoomDatabase() {
 
     abstract fun getDao() : Dao
-
     companion object{
          @Volatile
          private var INSTANCE: MainDataBase? = null

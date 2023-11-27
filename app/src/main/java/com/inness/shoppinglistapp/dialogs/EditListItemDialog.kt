@@ -4,9 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import com.inness.shoppinglistapp.R
 import com.inness.shoppinglistapp.databinding.EditListItemDialogBinding
-import com.inness.shoppinglistapp.databinding.NewListDialogBinding
 import com.inness.shoppinglistapp.entities.ShopListItem
 
 object EditListItemDialog {
@@ -26,14 +24,11 @@ object EditListItemDialog {
                }
                dialog?.dismiss()
            }
-
-            }
-
+        }
         dialog = builder.create()
         dialog.window?.setBackgroundDrawable(null)
         dialog.show()
     }
-
 
     interface Listener {
         fun onClick(shopListItem: ShopListItem)

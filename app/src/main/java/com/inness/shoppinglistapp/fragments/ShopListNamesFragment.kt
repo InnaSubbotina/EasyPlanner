@@ -29,7 +29,7 @@ class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
     override fun onClickNew() {
         binding.newItemFab.setOnClickListener {
             NewListDialog.showDialog(
-                activity as AppCompatActivity, object : NewListDialog.Listener{
+                activity as AppCompatActivity, object : NewListDialog.Listener {
                     override fun onClick(name: String) {
                         val shopListName = ShopListNameItem(
                             null,
@@ -40,8 +40,8 @@ class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
                             ""
                         )
                         mainViewModel.insertShopListName(shopListName)
-                    }
-                },"")
+                }
+            },"")
         }
     }
 
@@ -64,24 +64,17 @@ class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
         onClickNew()
     }
 
-    private fun initRcView() = with(binding){
+    private fun initRcView() = with(binding) {
         rcView.layoutManager = LinearLayoutManager(activity)
         adapter = ShopListNameAdapter(this@ShopListNamesFragment)
         rcView.adapter = adapter
-
     }
 
-    private fun observer(){
+    private fun observer() {
         mainViewModel.allShopListNames.observe(
             viewLifecycleOwner, {
                 adapter.submitList(it)
         })
-    }
-
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = ShopListNamesFragment()
     }
 
     override fun deleteItem(id: Int) {
@@ -106,5 +99,10 @@ class ShopListNamesFragment : BaseFragment(), ShopListNameAdapter.Listener {
             putExtra(ShopListActivity.SHOP_LIST_NAME, shopListNameItem)
         }
         startActivity(intent)
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = ShopListNamesFragment()
     }
 }

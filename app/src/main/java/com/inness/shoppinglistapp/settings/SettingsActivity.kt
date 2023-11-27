@@ -8,7 +8,6 @@ import androidx.preference.PreferenceManager
 import com.inness.shoppinglistapp.R
 
 class SettingsActivity : AppCompatActivity() {
-
     private lateinit var defPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {

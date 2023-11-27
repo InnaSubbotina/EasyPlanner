@@ -6,7 +6,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title">Title</string>
+    <string name="title">Заголовок</string>
     <string name="description">Введите текст заметки</string>
     <string name="new_list">Название нового списка</string>
     <string name="update_new_list">Измените название списка</string>
@@ -56,6 +56,7 @@
     <string name="note_was_delete">Заметка удалена</string>
     <string name="set_date_and_time">Выберите дату и время</string>
     <string name="choose_time">Выберите время</string>
+    <string name="my_alarm">Мое напоминание</string>
 
 
 </resources>

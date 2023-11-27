@@ -16,7 +16,8 @@ import com.inness.shoppinglistapp.databinding.ListShopnameItemBinding
 import com.inness.shoppinglistapp.entities.ShopListNameItem
 
 
-class ShopListNameAdapter(private val listener: Listener) : ListAdapter <ShopListNameItem, ShopListNameAdapter.ItemHolder>(ItemComparator()) {
+class ShopListNameAdapter(private val listener: Listener) :
+    ListAdapter <ShopListNameItem, ShopListNameAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.create(parent)
@@ -25,7 +26,6 @@ class ShopListNameAdapter(private val listener: Listener) : ListAdapter <ShopLis
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.setData(getItem(position), listener)
     }
-
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ListShopnameItemBinding.bind(view)
@@ -77,7 +77,6 @@ class ShopListNameAdapter(private val listener: Listener) : ListAdapter <ShopLis
         ): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(
             oldItem: ShopListNameItem,
             newItem: ShopListNameItem

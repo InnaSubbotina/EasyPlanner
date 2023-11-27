@@ -26,7 +26,8 @@ class MainViewModel(database: MainDataBase) : ViewModel() {
     }
     fun insertShopItem(shopListItem: ShopListItem) = viewModelScope.launch {
         dao.insertShopItem(shopListItem)
-        if(!isLibraryItemExists(shopListItem.name)) dao.insertLibraryItem(LibraryItem(null, shopListItem.name))
+        if(!isLibraryItemExists(shopListItem.name))
+        dao.insertLibraryItem(LibraryItem(null, shopListItem.name))
     }
     fun deleteNote(id: Int) = viewModelScope.launch {
         dao.deleteNote(id)

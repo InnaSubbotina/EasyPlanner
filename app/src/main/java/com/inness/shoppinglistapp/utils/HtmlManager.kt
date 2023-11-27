@@ -18,6 +18,5 @@ object HtmlManager {
         } else {
             Html.toHtml(text,Html.FROM_HTML_MODE_COMPACT)
         }
-
     }
 }

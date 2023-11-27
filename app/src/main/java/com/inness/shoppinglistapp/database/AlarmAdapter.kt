@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.inness.shoppinglistapp.R
-
 import com.inness.shoppinglistapp.databinding.ReminderListItemBinding
 import com.inness.shoppinglistapp.entities.AlarmItem
 
@@ -19,28 +18,25 @@ class AlarmAdapter(private val listener: Listener) : ListAdapter <AlarmItem, Ala
     }
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
        holder.setData(getItem(position),listener)
-       }
+    }
 
-    class ItemHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ReminderListItemBinding.bind(view)
 
-        fun setData(alarm: AlarmItem,listener: Listener) = with(binding){
+        fun setData(alarm: AlarmItem,listener: Listener) = with(binding) {
             tvTitle.text = alarm.title
             tvDescription.text = alarm.content
             tvMyTime.text = alarm.time
 
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 listener.onClickAlarmItem(alarm)
             }
             itemView.setOnLongClickListener {
                  alarm.id?.let { it1 -> listener.deleteAlarmItem(it1) }
                  true
              }
-            /*ibDelete.setOnClickListener {
-                alarm.id?.let { it1 -> listener.deleteAlarmItem(it1) }
-            }*/
             switchSetAlarm.setOnCheckedChangeListener { _, isChecked ->
-                if(isChecked) {
+                if (isChecked) {
                     alarm.alarmOnOff = true
                     listener.onClickAlarmSwitchOn(alarm)
                 } else {
@@ -48,10 +44,7 @@ class AlarmAdapter(private val listener: Listener) : ListAdapter <AlarmItem, Ala
                     listener.onClickAlarmSwitchOff(alarm)
                 }
             }
-
         }
-
-
 
         companion object {
             fun create(parent: ViewGroup) : ItemHolder {
@@ -61,11 +54,10 @@ class AlarmAdapter(private val listener: Listener) : ListAdapter <AlarmItem, Ala
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<AlarmItem>(){
+    class ItemComparator : DiffUtil.ItemCallback<AlarmItem>() {
         override fun areItemsTheSame(oldItem: AlarmItem, newItem: AlarmItem): Boolean {
           return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: AlarmItem, newItem: AlarmItem): Boolean {
             return oldItem == newItem
         }

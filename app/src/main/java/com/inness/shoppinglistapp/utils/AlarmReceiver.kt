@@ -11,17 +11,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 import com.inness.shoppinglistapp.R
-import com.inness.shoppinglistapp.activities.AlarmRingsActivity
-
+import com.inness.shoppinglistapp.activities.MainActivity
 
 class AlarmReceiver : BroadcastReceiver() {
-
     private lateinit var ringtone: Ringtone
-
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
-
         val myNotification = intent.getStringExtra("myNotification")
         addNotification(myNotification,context)
         ringtonePlay(context)
@@ -29,22 +25,19 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun addNotification(text: String?, context: Context) {
         val soundUri = RingtoneManager.getActualDefaultRingtoneUri(context,RingtoneManager.TYPE_NOTIFICATION)
-
-        val intent1 = Intent(context, AlarmRingsActivity::class.java)
+        val intent1 = Intent(context, MainActivity::class.java)
         intent1.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 1, intent1, PendingIntent.FLAG_IMMUTABLE)
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_my_notification)
-            .setContentTitle("Мое напоминание")
-            //.setContentText(text)
+            .setContentTitle(context.getString(R.string.my_alarm))
             .setStyle(NotificationCompat.BigTextStyle()
             .bigText(text))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .setSound(soundUri)
-
         val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(123, builder.build())
     }
@@ -56,6 +49,6 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     companion object{
-        const val CHANNEL_ID = "foxandroid"
+        const val CHANNEL_ID = "android"
     }
 }

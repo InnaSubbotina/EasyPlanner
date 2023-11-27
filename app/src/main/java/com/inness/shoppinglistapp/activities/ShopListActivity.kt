@@ -1,18 +1,16 @@
 package com.inness.shoppinglistapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MenuItem.OnActionExpandListener
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inness.shoppinglistapp.R
 import com.inness.shoppinglistapp.database.ShopListItemAdapter
@@ -104,7 +102,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         mainViewModel.insertShopItem(item)
     }
 
-    private fun listItemObserver(){
+    private fun listItemObserver() {
         mainViewModel.getAllItemsFromList(shopListNameItem?.id!!).observe(this) {
             adapter?.submitList(it)
             binding.tvEmply.visibility = if (it.isEmpty()) {
@@ -115,7 +113,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         }
     }
 
-    private fun libraryItemObserver(){
+    private fun libraryItemObserver() {
         mainViewModel.libraryItems.observe(this,({
             val tempShopList = ArrayList<ShopListItem>()
             it.forEach { item->
@@ -136,7 +134,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         }))
     }
 
-    private fun initRcView() = with(binding){
+    private fun initRcView() = with(binding) {
         adapter = ShopListItemAdapter(this@ShopListActivity)
         rcViewShopList.layoutManager = LinearLayoutManager(this@ShopListActivity)
         rcViewShopList.adapter = adapter
@@ -165,7 +163,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
        }
     }
 
-    private fun init(){
+    private fun init() {
         shopListNameItem = intent.getSerializableExtra(SHOP_LIST_NAME) as ShopListNameItem
     }
 
@@ -186,7 +184,6 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         DeleteDialog.showDialog(this, object : DeleteDialog.Listener {
             override fun onClick() {
                 mainViewModel.deleteListItem(id)
-                //Toast.makeText(this,"Удалено", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -208,7 +205,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         })
     }
 
-    private fun saveItemCount(){
+    private fun saveItemCount() {
         var checkedItemCounter = 0
         adapter?.currentList?.forEach {
             if(it.itemChecked) checkedItemCounter++
@@ -225,7 +222,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         super.onBackPressed()
     }
 
-    companion object{
+    companion object {
         const val SHOP_LIST_NAME = "shop_list_name"
     }
 }

@@ -9,13 +9,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.inness.shoppinglistapp.R
-import com.inness.shoppinglistapp.databinding.ListShopnameItemBinding
 import com.inness.shoppinglistapp.databinding.ShopLibraryListItemBinding
 import com.inness.shoppinglistapp.databinding.ShopListItemBinding
-import com.inness.shoppinglistapp.entities.ShopListNameItem
 import com.inness.shoppinglistapp.entities.ShopListItem
 
-class ShopListItemAdapter(private val listener: Listener) : ListAdapter<ShopListItem, ShopListItemAdapter.ItemHolder>(ItemComparator()) {
+class ShopListItemAdapter(private val listener: Listener) :
+    ListAdapter <ShopListItem, ShopListItemAdapter.ItemHolder> (ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return if (viewType == 0) {
@@ -58,7 +57,6 @@ class ShopListItemAdapter(private val listener: Listener) : ListAdapter<ShopList
                     shopListItem.id?.let { it1 -> listener.deleteListItem(it1) }
                     true
                 }
-
             }
         }
 
@@ -123,7 +121,6 @@ class ShopListItemAdapter(private val listener: Listener) : ListAdapter<ShopList
         ): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(
             oldItem: ShopListItem,
             newItem: ShopListItem
@@ -137,12 +134,11 @@ class ShopListItemAdapter(private val listener: Listener) : ListAdapter<ShopList
         fun deleteListItem(id: Int)
     }
 
-    companion object{
+    companion object {
         const val EDIT = 0
         const val CHECK_BOX = 1
         const val EDIT_LIBRARY_ITEM = 2
         const val DELETE_LIBRARY_ITEM = 3
         const val ADD = 4
-
     }
 }

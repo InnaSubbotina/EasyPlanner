@@ -13,7 +13,8 @@ import com.inness.shoppinglistapp.entities.NoteItem
 import com.inness.shoppinglistapp.utils.HtmlManager
 import com.inness.shoppinglistapp.utils.TimeManager
 
-class NoteAdapter(private val listener: Listener, private val defPref: SharedPreferences) : ListAdapter <NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
+class NoteAdapter (private val listener: Listener, private val defPref: SharedPreferences) :
+    ListAdapter <NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.create(parent)
@@ -23,10 +24,10 @@ class NoteAdapter(private val listener: Listener, private val defPref: SharedPre
        holder.setData(getItem(position),listener,defPref)
     }
 
-    class ItemHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = NoteListItemBinding.bind(view)
 
-        fun setData(note: NoteItem,listener: Listener, defPref: SharedPreferences) = with(binding){
+        fun setData(note: NoteItem,listener: Listener, defPref: SharedPreferences) = with(binding) {
             tvTitle.text = note.title
             tvDescription.text = HtmlManager.getFromHtml(note.content).trim()
             tvTime.text = TimeManager.getTimeFormat(note.time,defPref)
@@ -47,11 +48,10 @@ class NoteAdapter(private val listener: Listener, private val defPref: SharedPre
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<NoteItem>(){
+    class ItemComparator : DiffUtil.ItemCallback<NoteItem>() {
         override fun areItemsTheSame(oldItem: NoteItem, newItem: NoteItem): Boolean {
           return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: NoteItem, newItem: NoteItem): Boolean {
             return oldItem == newItem
         }

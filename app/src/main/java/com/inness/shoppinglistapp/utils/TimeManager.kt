@@ -12,11 +12,7 @@ object TimeManager {
         val formatter = SimpleDateFormat("hh:mm:ss - yyyy/MM/dd", Locale.getDefault())
         return formatter.format(Calendar.getInstance().time)
     }
-    fun getCurrentTimeForRingAct() : String {
-        SimpleDateFormat.HOUR24_MINUTE
-        val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return formatter.format(Calendar.getInstance().time)
-    }
+
     fun getTimeFormat(time: String, defPreference: SharedPreferences): String {
         val defFormatter = SimpleDateFormat(DEF_TIME_FORMAT, Locale.getDefault())
         val defDate = defFormatter.parse(time)
